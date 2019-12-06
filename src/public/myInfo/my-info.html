@@ -1,0 +1,19 @@
+<div ng-if="myInfo.data">
+  <div>
+    <h2>my information:</h2>
+    <ul>
+      <li>name: {{myInfo.data.name}}</li>
+      <li>last name: {{myInfo.data.lastName}}</li>
+      <li>email: {{myInfo.data.email}}</li>
+      <li>phone number: {{myInfo.data.phoneNumber}}</li>
+    </ul>
+  </div>
+  <div ng-if="myInfo.data.FavItemData.name.length>1">
+    <h2>my favorite dish:</h2>
+    favorite dish name: {{myInfo.data.FavItemData.name}}
+    <p>description:  {{myInfo.data.FavItemData.description}} </p>
+    <img style="display: block;" ng-src="images/menu/{{myInfo.data.FavItemData.category_short_name}}/{{myInfo.data.FavItemData.category_short_name}}.jpg" alt="imge">
+  </div>
+</div>
+<div class="alert alert-danger" 
+ng-if="!myInfo.data">Not Signed Up Yet.<a ui-sref="public.sign-up">Sign up Now!</a> </div>

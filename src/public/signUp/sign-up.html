@@ -1,0 +1,100 @@
+<style>
+  .ng-touched.ng-invalid {
+    background-color: pink;
+  }
+  .ng-touched.ng-valid {
+    background-color: lightgreen;
+  }
+  .alert-danger{padding: 0px;margin: 0px;}
+</style>
+<div class="container">
+  <h2>Sign up</h2>
+  <form name="signUpForm" novalidate>
+    <div class="form-group">
+      <label for="name">name:</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter name"
+        name="name"
+        ng-model="signUpCtrl.name"
+        minlength="4"
+        required
+      />
+      <span class="alert alert-danger" ng-if="(signUpForm.name.$error.required
+      || signUpForm.name.$error.minlength) 
+      && signUpForm.name.$touched "> name should be more than 4 letters </span>
+    </div>
+    <div class="form-group">
+      <label for="last name">last name:</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter last name"
+        name="lastname"
+        ng-model="signUpCtrl.lastName"
+        minlength="4"
+        required
+      />
+      <span class="alert alert-danger" ng-if="(signUpForm.lastname.$error.required
+      || signUpForm.lastname.$error.minlength) 
+      && signUpForm.lastname.$touched ">last name should be more than 4 letters </span>
+    </div>
+    <div class="form-group">
+      <label for="email">email address:</label>
+      <input
+        type="email"
+        class="form-control"
+        placeholder="Enter email address"
+        name="emailaddress"
+        ng-model="signUpCtrl.emailAddress"
+        required
+      />
+      <span class="alert alert-danger" ng-if="(signUpForm.emailaddress.$error.required
+      || signUpForm.emailaddress.$invalid) 
+      && signUpForm.emailaddress.$touched "> please type valid email address </span>
+    </div>
+    <div class="form-group">
+      <label for="phone number">phone number:</label>
+      <input
+        type="text"
+        class="form-control"
+        pattern="(\d{3})-(\d{3})-(\d{4})"
+        placeholder="###-###-####"
+        name="phonenumber"
+        ng-model="signUpCtrl.phoneNumber"
+        required
+      />
+      <span class="alert alert-danger" ng-if="(signUpForm.phonenumber.$error.required
+      || signUpForm.phonenumber.$invalid) 
+      && signUpForm.phonenumber.$touched "> phone number must be in this format ###-###-#### </span>
+    </div>
+    <div class="form-group">
+      <label for="Favorite dish">Favorite dish:</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter short name for your Favorite dish"
+        name="shortname"
+        ng-model="signUpCtrl.shortName"
+        minlength="2"
+        ng-maxlength="4"
+        required
+      />
+      <span class="alert alert-danger" ng-if="(signUpForm.shortname.$error.required
+      || signUpForm.shortname.$error.minlength || signUpForm.shortname.$error.maxlength) 
+      && signUpForm.shortname.$touched "> Short name of dish is 1-2 letters and 1-2 numbers </span>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-default"
+      ng-disabled="signUpForm.$invalid"
+      ng-click="signUpCtrl.submit()"
+    >
+      Submit
+    </button>
+    <span ng-if="signUpCtrl.formSbmitted && signUpCtrl.faveItemFound" class="alert alert-success"> Your information has been saved</span>
+    <span class="alert alert-warning" ng-if="signUpCtrl.faveItemFound === false">No such menu number exists</span>
+  </form>
+</div>
